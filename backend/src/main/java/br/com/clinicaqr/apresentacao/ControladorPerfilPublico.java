@@ -24,7 +24,7 @@ public class ControladorPerfilPublico {
   ByteArrayOutputStream saida=new ByteArrayOutputStream();MatrixToImageWriter.writeToStream(matriz,"PNG",saida);return saida.toByteArray();
  }
  public record RequisicaoSenha(@NotBlank String senha){}
- public record RespostaPublica(String nome,String sobrenome,String sexo,String contatoEmergencia,String tipoSanguineo,List<String> alergias,List<String> medicamentos,List<String> doencas,List<String> cirurgias){
-  static RespostaPublica de(PerfilClinico p){return new RespostaPublica(p.nome(),p.sobrenome(),p.sexo(),p.contatoEmergencia(),p.tipoSanguineo(),p.alergias(),p.medicamentos(),p.doencas(),p.cirurgias());}
+ public record RespostaPublica(String nome,String sobrenome,String sexo,String contatoEmergencia,String telefoneContatoEmergencia,String tipoSanguineo,List<String> alergias,List<String> medicamentos,List<String> doencas,List<String> cirurgias){
+  static RespostaPublica de(PerfilClinico p){return new RespostaPublica(p.nome(),p.sobrenome(),p.sexo(),p.contatoEmergencia(),p.telefoneContatoEmergencia(),p.tipoSanguineo(),p.alergias(),p.medicamentos(),p.doencas(),p.cirurgias());}
  }
 }

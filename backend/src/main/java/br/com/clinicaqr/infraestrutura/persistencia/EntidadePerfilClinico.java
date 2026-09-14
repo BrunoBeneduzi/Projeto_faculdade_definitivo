@@ -10,6 +10,7 @@ public class EntidadePerfilClinico {
  @Column(nullable=false) public String sobrenome;
  public String sexo;
  @Column(name="contato_emergencia",nullable=false) public String contatoEmergencia;
+ @Column(name="telefone_contato_emergencia",nullable=false) public String telefoneContatoEmergencia;
  @Column(name="tipo_sanguineo",nullable=false) public String tipoSanguineo;
  @Column(name="senha_publica_hash",nullable=false) public String senhaPublicaHash;
  @ElementCollection(fetch=FetchType.EAGER) @CollectionTable(name="perfil_alergias",joinColumns=@JoinColumn(name="perfil_id")) @Column(name="valor") public List<String> alergias=new ArrayList<>();

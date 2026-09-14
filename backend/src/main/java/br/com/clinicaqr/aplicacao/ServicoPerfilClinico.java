@@ -21,7 +21,7 @@ public class ServicoPerfilClinico {
   String hash=senhaPublica!=null&&!senhaPublica.isBlank()?codificadorSenha.encode(senhaPublica):anterior==null?null:anterior.senhaPublicaHash();
   if(hash==null)throw new IllegalArgumentException("Senha pública é obrigatória");
   return repositorioPerfis.salvar(new PerfilClinico(id,usuarioId,idPublico,valor(entrada.nome(),usuario.nome()),valor(entrada.sobrenome(),usuario.sobrenome()),
-   entrada.sexo(),entrada.contatoEmergencia(),entrada.tipoSanguineo(),entrada.alergias(),entrada.medicamentos(),entrada.doencas(),entrada.cirurgias(),hash));
+   entrada.sexo(),entrada.contatoEmergencia(),entrada.telefoneContatoEmergencia(),entrada.tipoSanguineo(),entrada.alergias(),entrada.medicamentos(),entrada.doencas(),entrada.cirurgias(),hash));
  }
  public PerfilClinico buscarMeu(UUID usuarioId){return repositorioPerfis.buscarPorUsuarioId(usuarioId).orElseThrow(()->new ExcecaoNaoEncontrado("Cadastro clínico não encontrado"));}
  public PerfilClinico acessarPublico(UUID idPublico,String senha){

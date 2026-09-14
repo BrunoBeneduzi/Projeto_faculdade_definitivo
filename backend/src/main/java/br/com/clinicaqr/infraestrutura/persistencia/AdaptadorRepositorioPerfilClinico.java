@@ -13,8 +13,8 @@ public class AdaptadorRepositorioPerfilClinico implements RepositorioPerfilClini
  public void excluirPorUsuarioId(UUID id){repositorio.deleteByUsuarioId(id);}
  private EntidadePerfilClinico paraEntidade(PerfilClinico p){
   EntidadePerfilClinico e=new EntidadePerfilClinico();e.id=p.id();e.usuarioId=p.usuarioId();e.idPublico=p.idPublico();e.nome=p.nome();e.sobrenome=p.sobrenome();
-  e.sexo=p.sexo();e.contatoEmergencia=p.contatoEmergencia();e.tipoSanguineo=p.tipoSanguineo();e.alergias=new ArrayList<>(p.alergias());
+  e.sexo=p.sexo();e.contatoEmergencia=p.contatoEmergencia();e.telefoneContatoEmergencia=p.telefoneContatoEmergencia();e.tipoSanguineo=p.tipoSanguineo();e.alergias=new ArrayList<>(p.alergias());
   e.medicamentos=new ArrayList<>(p.medicamentos());e.doencas=new ArrayList<>(p.doencas());e.cirurgias=new ArrayList<>(p.cirurgias());e.senhaPublicaHash=p.senhaPublicaHash();return e;
  }
- private PerfilClinico paraDominio(EntidadePerfilClinico e){return new PerfilClinico(e.id,e.usuarioId,e.idPublico,e.nome,e.sobrenome,e.sexo,e.contatoEmergencia,e.tipoSanguineo,e.alergias,e.medicamentos,e.doencas,e.cirurgias,e.senhaPublicaHash);}
+ private PerfilClinico paraDominio(EntidadePerfilClinico e){return new PerfilClinico(e.id,e.usuarioId,e.idPublico,e.nome,e.sobrenome,e.sexo,e.contatoEmergencia,e.telefoneContatoEmergencia,e.tipoSanguineo,e.alergias,e.medicamentos,e.doencas,e.cirurgias,e.senhaPublicaHash);}
 }
