@@ -13,11 +13,11 @@ Aplicação full stack para o trabalhador manter informações clínicas atualiz
 
 O backend segue os princípios da Clean Architecture:
 
-- `domain/model`: entidades e regras centrais sem dependência de framework;
-- `domain/port`: contratos de persistência;
-- `application`: casos de uso de autenticação e cadastro clínico;
-- `infrastructure`: adaptadores JPA, JWT e configurações;
-- `web`: controllers REST, DTOs, validação e tratamento de erros.
+- `dominio/modelo`: entidades e regras centrais sem dependência de framework;
+- `dominio/porta`: contratos de persistência;
+- `aplicacao`: casos de uso de autenticação e cadastro clínico;
+- `infraestrutura`: adaptadores JPA, JWT e configurações;
+- `apresentacao`: controllers REST, DTOs, validação e tratamento de erros.
 
 A direção das dependências parte das camadas externas para o domínio. Os casos de uso conhecem interfaces, não o Spring Data diretamente.
 
@@ -66,7 +66,7 @@ docker compose down -v
 Inicie apenas o PostgreSQL:
 
 ```bash
-docker compose up postgres -d
+docker compose up banco -d
 ```
 
 Backend:
@@ -88,13 +88,13 @@ npm run dev
 
 | Método | Endpoint | Autenticação | Função |
 |---|---|---|---|
-| POST | `/api/auth/register` | Pública | Criar conta |
-| POST | `/api/auth/login` | Pública | Entrar |
-| GET | `/api/profile` | JWT | Consultar próprio cadastro |
-| PUT | `/api/profile` | JWT | Criar ou atualizar cadastro |
-| DELETE | `/api/profile` | JWT | Excluir e invalidar link |
-| POST | `/api/public/{publicId}` | Senha pública | Consultar dados clínicos |
-| GET | `/api/public/{publicId}/qr` | JWT | Baixar QR Code em PNG |
+| POST | `/api/autenticacao/cadastro` | Pública | Criar conta |
+| POST | `/api/autenticacao/entrar` | Pública | Entrar |
+| GET | `/api/perfil` | JWT | Consultar próprio cadastro |
+| PUT | `/api/perfil` | JWT | Criar ou atualizar cadastro |
+| DELETE | `/api/perfil` | JWT | Excluir e invalidar link |
+| POST | `/api/publico/{publicId}` | Senha pública | Consultar dados clínicos |
+| GET | `/api/publico/{publicId}/codigo-qr` | JWT | Baixar QR Code em PNG |
 
 Nas rotas protegidas, envie `Authorization: Bearer <token>`.
 
@@ -102,16 +102,16 @@ Nas rotas protegidas, envie `Authorization: Bearer <token>`.
 
 ```json
 {
-  "firstName": "Bruno",
-  "lastName": "Beneduzi",
-  "sex": "Masculino",
-  "emergencyContact": "Maria - (51) 99999-9999",
-  "bloodType": "O+",
-  "allergies": ["Penicilina"],
-  "medications": ["Losartana 50mg"],
-  "diseases": [],
-  "surgeries": ["Apendicectomia"],
-  "publicPassword": "4827"
+  "nome": "Bruno",
+  "sobrenome": "Beneduzi",
+  "sexo": "Masculino",
+  "contatoEmergencia": "Maria - (51) 99999-9999",
+  "tipoSanguineo": "O+",
+  "alergias": ["Penicilina"],
+  "medicamentos": ["Losartana 50mg"],
+  "doencas": [],
+  "cirurgias": ["Apendicectomia"],
+  "senhaPublica": "4827"
 }
 ```
 
@@ -119,11 +119,11 @@ Nas rotas protegidas, envie `Authorization: Bearer <token>`.
 
 Antes de publicar:
 
-1. defina `JWT_SECRET` com um segredo aleatório longo;
+1. defina `CHAVE_JWT` com um segredo aleatório longo;
 2. use HTTPS;
 3. configure a origem permitida do CORS para o domínio real;
 4. não publique senhas no repositório;
 5. use credenciais próprias do PostgreSQL;
-6. ajuste `PUBLIC_BASE_URL` para o endereço do frontend.
+6. ajuste `URL_PUBLICA` para o endereço do frontend.
 
 O projeto é acadêmico e as informações exibidas não substituem avaliação médica.

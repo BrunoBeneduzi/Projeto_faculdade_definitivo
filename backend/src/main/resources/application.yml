@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/clinicaqr}
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:postgres}
+    url: ${URL_BANCO:jdbc:postgresql://localhost:5432/clinicaqr}
+    username: ${USUARIO_BANCO:postgres}
+    password: ${SENHA_BANCO:postgres}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -11,8 +11,8 @@ spring:
     enabled: true
 server:
   port: 8080
-app:
-  public-base-url: ${PUBLIC_BASE_URL:http://localhost:5173}
+aplicacao:
+  url-base-publica: ${URL_PUBLICA:http://localhost:5173}
   jwt:
-    secret: ${JWT_SECRET:troque-esta-chave-em-producao-minimo-32-caracteres}
-    expiration-ms: 86400000
+    chave: ${CHAVE_JWT:troque-esta-chave-em-producao-minimo-32-caracteres}
+    duracao-ms: 86400000
