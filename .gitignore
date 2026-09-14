@@ -1,0 +1,18 @@
+# Java
+backend/target/
+*.class
+# Node
+frontend/node_modules/
+frontend/dist/
+# IDE
+.idea/
+.vscode/
+.classpath
+.project
+.settings/
+# Environment
+.env
+frontend/.env
+# OS
+.DS_Store
+Thumbs.db
