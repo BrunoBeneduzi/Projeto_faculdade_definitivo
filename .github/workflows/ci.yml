@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  backend:
+  api:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -18,7 +18,7 @@ jobs:
           java-version: "21"
           cache: maven
       - run: mvn -B clean verify
-  frontend:
+  interface:
     runs-on: ubuntu-latest
     defaults:
       run:
