@@ -6,7 +6,6 @@ import {apiAutenticacao,apiPerfil,Perfil,EntradaPerfil} from './api';
 
 const perfilVazio:EntradaPerfil={nome:'',sobrenome:'',sexo:'',contatoEmergencia:'',telefoneContatoEmergencia:'',tipoSanguineo:'',alergias:[],medicamentos:[],doencas:[],cirurgias:[],senhaPublica:''};
 const separar=(valor:string)=>valor.split(',').map(item=>item.trim()).filter(Boolean);
-const limpar=(valores:string[])=>valores.map(valor=>valor.trim()).filter(Boolean);
 const juntar=(valores:string[]|undefined)=>valores?.map(item=>item.trim()).filter(Boolean).join(', ')??'';
 function Logotipo(){return <div className="logotipo"><span><HeartPulse size={27}/></span><b>Vida QR</b></div>}
 function Estrutura({children,back=false}:{children:React.ReactNode;back?:boolean}){return <main><header>{back?<Link className="voltar" to="/"><ArrowLeft/> Voltar</Link>:<Logotipo/>}<span className="seguro"><ShieldCheck/> Seus dados protegidos</span></header>{children}</main>}
