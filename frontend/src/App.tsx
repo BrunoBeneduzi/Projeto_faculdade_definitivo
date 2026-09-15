@@ -5,7 +5,7 @@ import {QRCodeSVG} from 'qrcode.react';
 import {apiAutenticacao,apiPerfil,Perfil,EntradaPerfil} from './api';
 
 const perfilVazio:EntradaPerfil={nome:'',sobrenome:'',sexo:'',contatoEmergencia:'',telefoneContatoEmergencia:'',tipoSanguineo:'',alergias:[],medicamentos:[],doencas:[],cirurgias:[],senhaPublica:''};
-const separar=(valor:string)=>valor.split(',');
+const separar=(valor:string)=>valor.split(',').map(item=>item.trimStart());
 const limpar=(valores:string[])=>valores.map(valor=>valor.trim()).filter(Boolean);
 const juntar=(valores:string[]|undefined)=>valores?.join(', ')??'';
 function Logotipo(){return <div className="logotipo"><span><HeartPulse size={27}/></span><b>Vida QR</b></div>}
