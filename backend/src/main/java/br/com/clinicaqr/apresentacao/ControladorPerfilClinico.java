@@ -16,12 +16,12 @@ public class ControladorPerfilClinico {
  }
  @GetMapping public RespostaPerfil buscarMeu(Authentication autenticacao){PerfilClinico p=servico.buscarMeu((UUID)autenticacao.getPrincipal());return RespostaPerfil.de(p,servico.montarUrlPublica(p));}
  @DeleteMapping @ResponseStatus(HttpStatus.NO_CONTENT) public void excluir(Authentication autenticacao){servico.excluir((UUID)autenticacao.getPrincipal());}
- public record RequisicaoPerfil(String nome,String sobrenome,@NotBlank String sexo,@NotBlank String contatoEmergencia,@NotBlank String tipoSanguineo,
+ public record RequisicaoPerfil(String nome,String sobrenome,@NotBlank String sexo,@NotBlank String contatoEmergencia,@NotBlank String telefoneContatoEmergencia,@NotBlank String tipoSanguineo,
   List<String> alergias,List<String> medicamentos,List<String> doencas,List<String> cirurgias,String senhaPublica){
-  PerfilClinico paraDominio(UUID usuarioId){return new PerfilClinico(null,usuarioId,null,nome,sobrenome,sexo,contatoEmergencia,tipoSanguineo,alergias,medicamentos,doencas,cirurgias,null);}
+  PerfilClinico paraDominio(UUID usuarioId){return new PerfilClinico(null,usuarioId,null,nome,sobrenome,sexo,contatoEmergencia,telefoneContatoEmergencia,tipoSanguineo,alergias,medicamentos,doencas,cirurgias,null);}
  }
- public record RespostaPerfil(UUID idPublico,String urlPublica,String nome,String sobrenome,String sexo,String contatoEmergencia,String tipoSanguineo,
+ public record RespostaPerfil(UUID idPublico,String urlPublica,String nome,String sobrenome,String sexo,String contatoEmergencia,String telefoneContatoEmergencia,String tipoSanguineo,
   List<String> alergias,List<String> medicamentos,List<String> doencas,List<String> cirurgias){
-  static RespostaPerfil de(PerfilClinico p,String url){return new RespostaPerfil(p.idPublico(),url,p.nome(),p.sobrenome(),p.sexo(),p.contatoEmergencia(),p.tipoSanguineo(),p.alergias(),p.medicamentos(),p.doencas(),p.cirurgias());}
+  static RespostaPerfil de(PerfilClinico p,String url){return new RespostaPerfil(p.idPublico(),url,p.nome(),p.sobrenome(),p.sexo(),p.contatoEmergencia(),p.telefoneContatoEmergencia(),p.tipoSanguineo(),p.alergias(),p.medicamentos(),p.doencas(),p.cirurgias());}
  }
 }
